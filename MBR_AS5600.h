@@ -15,12 +15,12 @@ class MBR_AS5600{
     // Degrees
     float degAbsolute; // absolute degrees relative to sensor
     float degStart = 0; // setting angle to 0
-    float degRelative = 0; // tared angle - start up angle
+    float degRelative = 0; // tared angle - start up angle, relative to 0
     float degAbsoluteLast = 0;
     int quadrant = 0;
     int previousQuadrant = 0; 
     float turns = 0;
-    float degAccumulative = 0; // total angular displacement
+    float degAccumulative = 0; // total angular displacement relative to 0
     float zeroOffset = 169.6-3.27; // for hard coding a 0 position for calibration, unused
     
     void checkMagnetStatus();
