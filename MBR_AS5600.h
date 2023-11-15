@@ -28,6 +28,7 @@ class MBR_AS5600{
     void readDegAbsolute();
     void printDegAbsolute();
     void resetStartDeg();
+    void resetStartDeg1();
     void setDegRelative();
     void checkQuadrant();
     void checkTurns();

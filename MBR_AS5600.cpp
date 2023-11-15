@@ -112,6 +112,15 @@ void MBR_AS5600::resetStartDeg(){
   }
 }
 
+// more dependent on being placed in right part of loop
+void MBR_AS5600::resetStartDeg1(){
+  if(magnetStatus != magnetStatusLast){
+    degStart = degAbsolute;
+  }
+}
+
+
+
 // @brief: Tare angle from degStart
 // @input: degAbsolute, degStart
 // @output: degRelative
