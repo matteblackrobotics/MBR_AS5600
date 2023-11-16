@@ -24,7 +24,20 @@ void MBR_AS5600::checkMagnetStatus(){
   Wire.write(magnetStatusRegister); // figure 21 - register map: Status: MD ML MH
   Wire.endTransmission();
   Wire.requestFrom(sensorAddress, 1);
-  while(Wire.available() == 0); // wait till data available
+
+  // wait till data available or timeout
+  Serial.println("Wire.avilable()");
+  int timeEnd = millis() + 5000;
+  int timeRemaining = timeEnd - millis();
+  while(Wire.available() == 0 && timeRemaining > 0){
+    timeRemaining = timeEnd - millis();
+    Serial.println(timeRemaining);
+  }
+  if(timeRemaining < 0){
+    Serial.print("no Wire data. end");
+    while(1);
+  }
+
   magnetStatus = Wire.read();
 }
 
