@@ -19,22 +19,25 @@ MBR_AS5600::MBR_AS5600(){}
 // ML: Too weak magnet - 10111 - DEC: 23
 // MD: OK magnet - 110111 - DEC: 55
 void MBR_AS5600::checkMagnetStatus(){
+  
   magnetStatusLast = magnetStatus;
   Wire.beginTransmission(sensorAddress);
+  
   Wire.write(magnetStatusRegister); // figure 21 - register map: Status: MD ML MH
-  Wire.endTransmission();
+  Wire.endTransmission(); // if no i2c device, eror here
+  // Serial.println("flag2");
   Wire.requestFrom(sensorAddress, 1);
 
-  // wait till data available or timeout
+  // wait till data available or timeout, untested
   Serial.println("Wire.avilable()");
-  int timeEnd = millis() + 5000;
-  int timeRemaining = timeEnd - millis();
+  long timeEnd = millis() + 5000;
+  long timeRemaining = timeEnd - millis();
   while(Wire.available() == 0 && timeRemaining > 0){
     timeRemaining = timeEnd - millis();
     Serial.println(timeRemaining);
   }
-  if(timeRemaining < 0){
-    Serial.print("no Wire data. end");
+  if(timeRemaining <= 0){
+    Serial.print("no Wire data. blocking");
     while(1);
   }
 
