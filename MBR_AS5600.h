@@ -14,9 +14,11 @@ class MBR_AS5600{
 
     // Degrees
     float degAbsolute; // absolute degrees relative to sensor
+    float degAbsoluteLast = 0;
+
     float degStart = 0; // setting angle to 0
     float degRelative = 0; // tared angle - start up angle, relative to 0
-    float degAbsoluteLast = 0;
+    float degRelativeLast = 0;
     int quadrant = 0;
     int previousQuadrant = 0; 
     float turns = 0;
