@@ -29,7 +29,7 @@ void MBR_AS5600::checkMagnetStatus(){
   Wire.requestFrom(sensorAddress, 1);
 
   // wait till data available or timeout, untested
-  Serial.println("Wire.avilable()");
+  //Serial.println("Wire.avilable()");
   long timeEnd = millis() + 5000;
   long timeRemaining = timeEnd - millis();
   while(Wire.available() == 0 && timeRemaining > 0){
